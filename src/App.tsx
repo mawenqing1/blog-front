@@ -1,6 +1,5 @@
-import BlogRouter from '@/router/index';
+import BlogRouter from '@/router';
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
