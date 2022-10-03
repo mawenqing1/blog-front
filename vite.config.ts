@@ -24,5 +24,21 @@ export default defineConfig({
     },
     extensions: [".js", ".json", ".ts", ".tsx"],
   },
+  css: {
+    postcss: {
+      plugins: [
+        {
+          postcssPlugin: "internal:charset-removal",
+          AtRule: {
+            charset: (atRule) => {
+              if (atRule.name === "charset") {
+                atRule.remove();
+              }
+            },
+          },
+        },
+      ],
+    },
+  },
   plugins: [react()]
 })
