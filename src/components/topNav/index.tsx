@@ -1,5 +1,6 @@
 import React, { Fragment, FC } from "react";
 import styles from "./index.module.less";
+import avatar from "@/assets/image/avatar.jpeg"
 
 const TopNav: FC = () => {
     const routerBtn = [
@@ -36,7 +37,7 @@ const TopNav: FC = () => {
     return (
         <div className={styles.top_menu}>
             <div className={styles.blog_logo}>
-                <img src="../../assets/image/avatar.jpeg" alt="" />
+                <img src={avatar} alt="" />
             </div>
             <nav className={styles.router_btn}>
                 {renderNavBar()}
