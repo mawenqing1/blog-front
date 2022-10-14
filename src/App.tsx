@@ -1,3 +1,4 @@
+import React from 'react';
 import BlogRouter from '@/router';
 import { useState } from 'react'
 import './App.less'

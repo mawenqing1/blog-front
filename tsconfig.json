@@ -14,8 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "noImplicitAny": false,
+    "jsx": "react",
+    "noImplicitAny": true,
     "baseUrl": "./",
     "paths": {
 			"@/*": ["src/*"]

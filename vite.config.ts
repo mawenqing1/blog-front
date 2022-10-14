@@ -13,7 +13,7 @@ export default defineConfig({
     port: 8060,
     proxy: {
       "/api": {
-        target: "http://localhost",
+        target: "http://blog.mawenqing.net",
         changeOrigin: true,
       },
     },
