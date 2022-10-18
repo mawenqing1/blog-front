@@ -19,14 +19,10 @@
 
         .article_main {
             width: 100%;
-            height: 400px;
-            min-height: 400px;
             padding: 20px 16px;
             margin-bottom: 12px;
             border-radius: var(--border-radius);
             background-color: #fff;
-            overflow: hidden;
-            text-overflow: ellipsis;
 
             .article_title {
                 max-width: 100%;
@@ -62,6 +58,11 @@
 
             .article_content {
                 margin-top: 4px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 10;
+                -webkit-box-orient: vertical;
             }
         }
     }

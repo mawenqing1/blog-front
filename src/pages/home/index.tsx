@@ -7,6 +7,7 @@ import { formatDate } from "@/utils/utils";
 import { Article } from "@/types/home"
 import TopNav from "@/components/topNav";
 import SelfCard from "@/components/SelfCard";
+import BgA from "@/components/BgAnimatiion";
 
 const mockData = [
     {
@@ -65,6 +66,7 @@ const Home: FC = () => {
 
     return (
         <Fragment>
+            <BgA />
             <TopNav />
             <div className={styles.home_main}>
                 <div className={styles.home_left}>
