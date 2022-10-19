@@ -1,14 +1,6 @@
-import React, { FC, Fragment, useEffect } from "react";
-import styles from "./index.module.less";
-// import avatar from "@/assets/image/avatar.jpeg";
-// import wx from "@/assets/image/wx.png";
-import { GET_BLOG_LIST } from "@/api/api";
+import React, { Fragment, FC } from "react";
 import { formatDate } from "@/utils/utils";
-import { Article } from "@/types/home"
-import TopNav from "@/components/topNav";
-import SelfCard from "@/components/SelfCard";
-import BgA from "@/components/BgAnimatiion";
-import ArticleCard from "@/components/ArticleList";
+import styles from "./index.module.less";
 
 const mockData = [
     {
@@ -24,69 +16,58 @@ const mockData = [
         author: "马文卿",
         createTime: 1665739352000,
         id: 2
-    }
+    },
+    {
+        title: "模拟数据标题B",
+        content: "这是一篇博客",
+        author: "马文卿",
+        createTime: 1665739352000,
+        id: 3
+    },
+    {
+        title: "模拟数据标题B",
+        content: "这是一篇博客",
+        author: "马文卿",
+        createTime: 1665739352000,
+        id: 4
+    },
+    {
+        title: "模拟数据标题B",
+        content: "这是一篇博客",
+        author: "马文卿",
+        createTime: 1665739352000,
+        id: 5
+    },
+    {
+        title: "模拟数据标题B",
+        content: "这是一篇博客",
+        author: "马文卿",
+        createTime: 1665739352000,
+        id: 6
+    },
 ]
 
-const Home: FC = () => {
-    useEffect(() => {
-        queryBlogList()
-    }, []);
+const ArticleCard: FC = () => {
 
-    /**
-     * query blog list
-     */
-    const queryBlogList = async () => {
-        const { data, code } = await GET_BLOG_LIST({})
-        if (code === 1) {
-            console.log(data);
-        }
+    const renderList = () => {
+        return (
+            <ul className={styles.card_list}>
+                {mockData.map(el => (
+                    <li className={styles.card_item} key={el.id}>
+                        <p className={styles.item_title}>{el.title}</p>
+                        <p className={styles.item_time}>{formatDate(new Date(el.createTime))}</p>
+                    </li>
+                ))}
+            </ul>
+        )
     }
 
-    /**
-     * render blog article list
-     * @param list article list
-     * @returns HTML
-     */
-    const renderList = (list: Array<Article>) => {
-        return (
-            <Fragment>
-                {list.map(el => (
-                    <div className={styles.article_main} key={el.id}>
-                        <header className={styles.article_title}>{el.title}</header>
-                        <div className={styles.article_information}>
-                            <div className={styles.article_author}>
-                                <i className="iconfont icon-zuozhe"></i>
-                                <span>{el.author}</span>
-                            </div>
-                            <div className={styles.article_time}>
-                                <i className="iconfont icon-riqi"></i>
-                                <span>{formatDate(new Date(el.createTime))}</span>
-                            </div>
-                        </div>
-                        <div className={styles.article_content}>{el.content}</div>
-                    </div>
-                ))}
-            </Fragment>
-        )
-    };
-
     return (
-        <Fragment>
-            <BgA />
-            <TopNav />
-            <div className={styles.home_main}>
-                <div className={styles.home_left}>
-                    <SelfCard />
-                </div>
-                <div className={styles.home_center}>
-                    {renderList(mockData)}
-                </div>
-                <div className={styles.home_right}>
-                    <ArticleCard />
-                </div>
-            </div>
-        </Fragment>
+        <main className={styles.article_card}>
+            <header className={styles.card_title}>最新文章</header>
+            {renderList()}
+        </main>
     )
 };
 
-export default Home
+export default ArticleCard
