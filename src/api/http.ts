@@ -2,6 +2,7 @@ import axios, { AxiosPromise } from "axios";
 import { checkUrl } from "@/utils/utils";
 import { message } from 'antd';
 import { ResType } from "@/types/http"
+import { resolve } from "path";
 
 /*
  * 基础配置
@@ -92,13 +93,14 @@ instance.interceptors.response.use(
  * 在对象，['params']:data ===== params:data 这样理解
  *
  * */
-const request = <T>(url: string, method: string, data: T): Promise<ResType<T>> => {
+export default <T>(url: string, method: string, data: T): Promise<ResType<T>> => {
     return  new Promise((resole)=>{
         instance({
             url,
             method,
             [method.toLowerCase() === "get" ? "params" : "data"]: data,
-        });
-    }) 
+        }).then((res:any) => {
+            resole(res)
+        })
+    })
 };
-export default request
