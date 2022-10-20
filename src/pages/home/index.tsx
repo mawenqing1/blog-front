@@ -1,11 +1,8 @@
 import React, { FC, Fragment, useEffect } from "react";
 import styles from "./index.module.less";
-// import avatar from "@/assets/image/avatar.jpeg";
-// import wx from "@/assets/image/wx.png";
 import { GET_BLOG_LIST } from "@/api/api";
 import { formatDate } from "@/utils/utils";
 import { Article } from "@/types/home"
-import TopNav from "@/components/topNav";
 import SelfCard from "@/components/SelfCard";
 import BgA from "@/components/BgAnimatiion";
 import ArticleCard from "@/components/ArticleList";
@@ -73,7 +70,6 @@ const Home: FC = () => {
     return (
         <Fragment>
             <BgA />
-            <TopNav />
             <div className={styles.home_main}>
                 <div className={styles.home_left}>
                     <SelfCard />

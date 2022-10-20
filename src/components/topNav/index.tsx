@@ -2,9 +2,11 @@ import React, { Fragment, FC, useState } from "react";
 import styles from "./index.module.less";
 import avatar from "@/assets/image/avatar.jpeg";
 import LoginModel from "../LoginModel";
+import { Button } from "antd";
 
 const TopNav: FC = () => {
     const [modalVisible, setModalVisible] = useState<boolean>(false);
+    const [isLogin, setIsLogin] = useState<boolean>(false);
 
     const routerBtn = [
         {
@@ -27,6 +29,10 @@ const TopNav: FC = () => {
 
     const handleCloseModal = () => {
         setModalVisible(false)
+    };
+
+    const handleLogin = () => {
+        setIsLogin(true);
     }
 
     const renderNavBar = () => {
@@ -39,7 +45,24 @@ const TopNav: FC = () => {
                 })}
             </Fragment>
         )
-    }
+    };
+
+    const renderLogin = () => {
+        const loginName = sessionStorage.getItem("BLOG_USER_NAME");
+        if (!loginName) {
+            return (
+                <div className={styles.login_btn} onClick={() => setModalVisible(true)}>登陆</div>
+            )
+        } else {
+            const name = sessionStorage.getItem("BLOG_USER_NAME")
+            return (
+                <div className={styles.login_user}>
+                    <Button type="primary" shape="round">写文章</Button>
+                    <span className={styles.user_name}>{loginName}</span>
+                </div>
+            )
+        }
+    };
 
     return (
         <div className={styles.top_menu}>
@@ -49,8 +72,8 @@ const TopNav: FC = () => {
             <nav className={styles.router_btn}>
                 {renderNavBar()}
             </nav>
-            <div className={styles.login_btn} onClick={() => setModalVisible(true)}>登陆</div>
-            <LoginModel visible={modalVisible} handleCloseModal={handleCloseModal} />
+            {renderLogin()}
+            <LoginModel visible={modalVisible} handleCloseModal={handleCloseModal} handleLogin={handleLogin} />
         </div>
     )
 };

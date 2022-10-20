@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom'
 import App from './App';
 import "@/assets/style/index.less";
-import 'antd/dist/antd.css';
+import zhCN from 'antd/es/locale/zh_CN';
+import { ConfigProvider } from 'antd';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  // <React.StrictMode>
+  <ConfigProvider locale={zhCN}>
+  {/* <React.StrictMode> */}
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  // </React.StrictMode>
+  {/* </React.StrictMode> */}
+  </ConfigProvider>
 )
