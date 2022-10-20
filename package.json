@@ -9,13 +9,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@bytemd/plugin-frontmatter": "^1.17.4",
+    "@bytemd/plugin-gemoji": "^1.17.4",
+    "@bytemd/plugin-gfm": "^1.17.4",
+    "@bytemd/plugin-highlight-ssr": "^1.17.4",
+    "@bytemd/plugin-medium-zoom": "^1.17.4",
+    "@bytemd/plugin-mermaid": "^1.17.4",
+    "@bytemd/react": "^1.17.4",
     "antd": "^4.23.3",
     "axios": "^0.27.2",
+    "bytemd": "^1.17.4",
+    "juejin-markdown-themes": "^1.29.3",
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.4.1",
+    "remark-gemoji": "^7.0.1",
     "vite-plugin-imp": "^2.3.0"
   },
   "devDependencies": {
