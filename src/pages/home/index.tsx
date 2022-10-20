@@ -6,6 +6,7 @@ import { Article } from "@/types/home"
 import SelfCard from "@/components/SelfCard";
 import BgA from "@/components/BgAnimatiion";
 import ArticleCard from "@/components/ArticleList";
+// import TopNav from "@/components/topNav";
 
 const mockData = [
     {

@@ -1,4 +1,5 @@
 import React, { Fragment, FC, useState } from "react";
+import { useNavigate } from "react-router";
 import styles from "./index.module.less";
 import avatar from "@/assets/image/avatar.jpeg";
 import LoginModel from "../LoginModel";
@@ -7,15 +8,16 @@ import { Button } from "antd";
 const TopNav: FC = () => {
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const routerBtn = [
         {
             text: "主页",
-            router: "/"
+            router: "/layout/home"
         },
         {
             text: "列表",
-            router: "/"
+            router: "/layout/article"
         },
         {
             text: "归档",
@@ -40,7 +42,7 @@ const TopNav: FC = () => {
             <Fragment>
                 {routerBtn.map((el, index) => {
                     return (
-                        <div className={styles.nav_btn} key={index}>{el.text}</div>
+                        <div className={styles.nav_btn} key={index} onClick={() => navigate(el.router)}>{el.text}</div>
                     )
                 })}
             </Fragment>
@@ -54,10 +56,9 @@ const TopNav: FC = () => {
                 <div className={styles.login_btn} onClick={() => setModalVisible(true)}>登陆</div>
             )
         } else {
-            const name = sessionStorage.getItem("BLOG_USER_NAME")
             return (
                 <div className={styles.login_user}>
-                    <Button type="primary" shape="round">写文章</Button>
+                    <Button type="primary" shape="round" onClick={() => navigate("/layout/article")}>写文章</Button>
                     <span className={styles.user_name}>{loginName}</span>
                 </div>
             )

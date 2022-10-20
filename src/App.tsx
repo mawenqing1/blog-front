@@ -1,16 +1,17 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Suspense } from 'react';
 import BlogRouter from '@/router';
 import { useState } from 'react'
 import './App.less';
-import TopNav from "@/components/topNav";
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <Fragment>
-      <TopNav />
-      <BlogRouter />
+      <Suspense fallback={<div>loading</div>}>
+        <BlogRouter />
+      </Suspense>
+
     </Fragment>
   )
 }
