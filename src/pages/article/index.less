@@ -1,6 +1,7 @@
 .editor_box {
     width: 100%;
     height: calc(100% - 50px);
+    animation: identifier 1s ease;
     .editor_header {
         padding: 10px 40px 10px 20px;
         display: flex;
@@ -23,4 +24,16 @@
 
 .bytemd {
     height: 100% !important;
+}
+
+@keyframes identifier {
+    0% {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }

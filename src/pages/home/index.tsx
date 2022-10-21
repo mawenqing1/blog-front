@@ -6,24 +6,6 @@ import { Article } from "@/types/home"
 import SelfCard from "@/components/SelfCard";
 import BgA from "@/components/BgAnimatiion";
 import ArticleCard from "@/components/ArticleList";
-// import TopNav from "@/components/topNav";
-
-const mockData = [
-    {
-        title: "模拟数据标题A",
-        content: "坚持首善标准、精益求精，北京向党和人民交上了合格答卷。特别是新中国成立七十周年和中国共产党成立一百周年两场庆祝活动，盛大庄严、气势恢宏，完美展现了大党大国气魄，极大激发了全国各族人民爱党爱国爱社会主义的热情和民族自豪感坚持首善标准、精益求精，北京向党和人民交上了合格答卷。特别是新中国成立七十周年和中国共产党成立一百周年两场庆祝活动，盛大庄严、气势恢宏，完美展现了大党大国气魄，极大激发了全国各族人民爱党爱国爱社会主义的热情和民族自豪感坚持首善标准、精益求精，北京向党和人民交上了合格答卷。特别是新中国成立七十周年和中国共产党成立一百周年两场庆祝活动，盛大庄严、气势恢宏，完美展现了大党大国气魄，极大激发了全国各族人民爱党爱国爱社会主义的热情和民族自豪感坚持首善标准、精益求精，北京向党和人民交上了合格答卷。特别是新中国成立七十周年和中国共产党成立一百周年两场庆祝活动，盛大庄严、气势恢宏，完美展现了大党大国气魄，极大激发了全国各族人民爱党爱国爱社会主义的热情和民族自豪感坚持首善标准、精益求精，北京向党和人民交上了合格答卷。特别是新中国成立七十周年和中国共产党成立一百周年两场庆祝活动，盛大庄严、气势恢宏，完美展现了大党大国气魄，极大激发了全国各族人民爱党爱国爱社会主义的热情和民族自豪感坚持首善标准、精益求精，北京向党和人民交上了合格答卷。特别是新中国成立七十周年和中国共产党成立一百周年两场庆祝活动，盛大庄严、气势恢宏，完美展现了大党大国气魄，极大激发了全国各族人民爱党爱国爱社会主义的热情和民族自豪感",
-        author: "马文卿",
-        createTime: 1665739351029,
-        id: 1
-    },
-    {
-        title: "模拟数据标题B",
-        content: "这是一篇博客",
-        author: "马文卿",
-        createTime: 1665739352000,
-        id: 2
-    }
-]
 
 const Home: FC = () => {
     const [articles, setArticles] = useState<Array<any>>([]);
@@ -60,7 +42,7 @@ const Home: FC = () => {
                             </div>
                             <div className={styles.article_time}>
                                 <i className="iconfont icon-riqi"></i>
-                                <span>{formatDate(new Date(el.createTime))}</span>
+                                <span>{formatDate(new Date(el.createtime))}</span>
                             </div>
                         </div>
                         <div className={styles.article_content}>{el.content}</div>

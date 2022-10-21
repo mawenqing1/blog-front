@@ -8,10 +8,9 @@ function App() {
 
   return (
     <Fragment>
-      <Suspense fallback={<div>loading</div>}>
-        <BlogRouter />
-      </Suspense>
-
+        <Suspense fallback={<div>loading</div>}>
+          <BlogRouter />
+        </Suspense>
     </Fragment>
   )
 }

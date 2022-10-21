@@ -2,6 +2,6 @@ export interface Article {
     title: string,
     content: string,
     author: string,
-    createTime: number,
+    createtime: number,
     id: number
 }
