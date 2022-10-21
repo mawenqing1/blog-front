@@ -1,20 +1,23 @@
 import React, { lazy } from "react";
-import { RouteObject, useRoutes } from "react-router";
+import { RouteObject, useRoutes, Navigate } from "react-router";
 import Layouts from "@/pages/layout"
 
-// const Layout = () => import("@/pages/layout");
 const Home = lazy(() => import("@/pages/home"));
 const Article = lazy(() => import("@/pages/article"));
 
 const routes:RouteObject[] = [
     {
         path: "/",
-        element: <Layouts />
+        element: <Navigate to="/layout" />
     },
     {
         path:'/layout',
         element: <Layouts />,
         children:[
+            {
+                index:true,
+                element: <Home />
+            },
             {
                 path: "home",
                 element: <Home />

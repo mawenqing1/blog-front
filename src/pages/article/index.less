@@ -1,13 +1,24 @@
 .editor_box {
     width: 100%;
     height: calc(100% - 50px);
-//     div {
-//         height: 100%;
-//     }
+    .editor_header {
+        padding: 10px 40px 10px 20px;
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+            .ant-input {
+                margin-right: 20px;
+                border: none;
+                &:focus {
+                    border: none;
+                    box-shadow: none;
+                }
+            }
+    }
 }
 
 .editor_box > div {
-    height: 100%;
+    height: calc(100% - 59px);
 }
 
 .bytemd {

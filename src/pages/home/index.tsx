@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect } from "react";
+import React, { FC, Fragment, useEffect, useState } from "react";
 import styles from "./index.module.less";
 import { GET_BLOG_LIST } from "@/api/api";
 import { formatDate } from "@/utils/utils";
@@ -26,6 +26,8 @@ const mockData = [
 ]
 
 const Home: FC = () => {
+    const [articles, setArticles] = useState<Array<any>>([]);
+
     useEffect(() => {
         queryBlogList()
     }, []);
@@ -36,7 +38,7 @@ const Home: FC = () => {
     const queryBlogList = async () => {
         const { data, code } = await GET_BLOG_LIST({})
         if (code === 1) {
-            console.log(data);
+            setArticles(data)
         }
     }
 
@@ -76,7 +78,7 @@ const Home: FC = () => {
                     <SelfCard />
                 </div>
                 <div className={styles.home_center}>
-                    {renderList(mockData)}
+                    {renderList(articles)}
                 </div>
                 <div className={styles.home_right}>
                     <ArticleCard />
