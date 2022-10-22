@@ -4,6 +4,7 @@ import Layouts from "@/pages/layout"
 
 const Home = lazy(() => import("@/pages/home"));
 const Article = lazy(() => import("@/pages/article"));
+const Detail = lazy(() => import("@/pages/detail"));
 
 const routes:RouteObject[] = [
     {
@@ -26,6 +27,10 @@ const routes:RouteObject[] = [
                 path: "article",
                 element: <Article />
             },
+            {
+                path: "detail",
+                element: <Detail />
+            }
         ]
     }
 ]

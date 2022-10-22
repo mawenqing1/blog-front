@@ -1,13 +1,15 @@
 import React, { FC, Fragment, useEffect, useState } from "react";
-import styles from "./index.module.less";
 import { GET_BLOG_LIST } from "@/api/api";
 import { formatDate } from "@/utils/utils";
 import { Article, List } from "@/types/home";
+import { useNavigate } from "react-router";
+import styles from "./index.module.less";
 import SelfCard from "@/components/SelfCard";
 import BgA from "@/components/BgAnimatiion";
 import ArticleCard from "@/components/ArticleList";
 
 const Home: FC = () => {
+    const navigate = useNavigate();
     const [articles, setArticles] = useState<Array<List>>([]);
 
     useEffect(() => {
@@ -34,7 +36,7 @@ const Home: FC = () => {
             <Fragment>
                 {list.map(el => (
                     <div className={styles.article_main} key={el.id}>
-                        <header className={styles.article_title}>{el.title}</header>
+                        <header className={styles.article_title} onClick={() => navigate("/layout/detail", {state: {id: el.id}})}>{el.title}</header>
                         <div className={styles.article_information}>
                             <div className={styles.article_author}>
                                 <i className="iconfont icon-zuozhe"></i>

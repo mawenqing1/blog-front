@@ -2,9 +2,11 @@ import React, { FC, useEffect, useState } from "react";
 import { GET_BLOG_LIST } from "@/api/api";
 import { formatDate } from "@/utils/utils";
 import { List } from "@/types/home";
+import { useNavigate } from "react-router";
 import styles from "./index.module.less";
 
 const ArticleCard: FC = () => {
+    const navigate = useNavigate();
     const [newList, setNewList] = useState<Array<List>>([]);
 
     useEffect(() => {
@@ -26,7 +28,7 @@ const ArticleCard: FC = () => {
             <ul className={styles.card_list}>
                 {list.map(el => (
                     <li className={styles.card_item} key={el.id}>
-                        <p className={styles.item_title}>{el.title}</p>
+                        <p className={styles.item_title} onClick={() => navigate("/layout/detail", {state: {id: el.id}})}>{el.title}</p>
                         <p className={styles.item_time}>{formatDate(new Date(el.createtime))}</p>
                     </li>
                 ))}

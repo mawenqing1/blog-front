@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Editor, Viewer } from "@bytemd/react";
+import { Editor } from "@bytemd/react";
 import { Modal, Input, Button, message } from "antd";
 import { ADD_ARTICLE } from "@/api/api";
 import { judgeStrNull } from "@/utils/utils";
