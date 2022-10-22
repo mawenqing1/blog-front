@@ -1,15 +1,21 @@
-import React, { FC, Fragment, useEffect } from "react";
+import React, { FC, Fragment, useEffect, useState } from "react";
+import { GET_BLOG_COUNT } from "@/api/api";
 import styles from "./index.module.less";
 import avatar from "@/assets/image/avatar.jpeg";
 import wx from "@/assets/image/wx.png";
 
 const SelfCard: FC = () => {
+    const [count, setCount] = useState<number>(0)
+
+    useEffect(() => {
+        queryBlogCount()
+    }, [])
 
     /**
      * open link base click icon
      * @param type current click icon
      */
-     const openLink = (type: string) => {
+    const openLink = (type: string) => {
         switch (type) {
             case 'github':
                 window.open("https://github.com/mawenqing1")
@@ -22,6 +28,13 @@ const SelfCard: FC = () => {
                 break;
         }
     };
+
+    const queryBlogCount = async () => {
+        const {data, code} = await GET_BLOG_COUNT({});
+        if(code === 1) {
+            setCount(data)
+        }
+    }
 
     return (
         <Fragment>
@@ -37,7 +50,7 @@ const SelfCard: FC = () => {
                 </div>
                 <div className={styles.card_center}>
                     <span className={styles.card_article}>文章</span>
-                    <span className={styles.card_num}>0</span>
+                    <span className={styles.card_num}>{count}</span>
                 </div>
                 <div className={styles.card_bottom}>
                     <div className="iconfont icon-github" onClick={() => openLink('github')}></div>

@@ -40,12 +40,12 @@ const Article: FC = () => {
     };
 
     const addNewArticle = async () => {
+        const content = value.replace(/"/g, "V1#_1")
         const { data, code } = await ADD_ARTICLE({
             title,
-            content: value
+            content
         });
         if(code === 1) {
-            console.log(data);
             message.success("发布成功");
             navigate("/layout/home")
         }
@@ -63,8 +63,6 @@ const Article: FC = () => {
                 plugins={plugins}
                 onChange={(v) => {
                     setValue(v);
-                    console.log(v);
-                    
                 }}
             />
         </div>

@@ -19,7 +19,7 @@
 
         .article_main {
             width: 100%;
-            padding: 20px 16px;
+            padding: 20px 16px 10px;
             margin-bottom: 12px;
             border-radius: var(--border-radius);
             background-color: #fff;
@@ -66,8 +66,18 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
-                -webkit-line-clamp: 10;
+                -webkit-line-clamp: 1;
                 -webkit-box-orient: vertical;
+            }
+
+            .article_ratings {
+                color: var(--text-sub-main);
+                display: flex;
+                align-items: center;
+                .ratings_text {
+                    margin-left: 4px;
+                    font-size: 12px;
+                }
             }
         }
     }

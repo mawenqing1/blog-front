@@ -2,13 +2,13 @@ import React, { FC, Fragment, useEffect, useState } from "react";
 import styles from "./index.module.less";
 import { GET_BLOG_LIST } from "@/api/api";
 import { formatDate } from "@/utils/utils";
-import { Article } from "@/types/home"
+import { Article, List } from "@/types/home";
 import SelfCard from "@/components/SelfCard";
 import BgA from "@/components/BgAnimatiion";
 import ArticleCard from "@/components/ArticleList";
 
 const Home: FC = () => {
-    const [articles, setArticles] = useState<Array<any>>([]);
+    const [articles, setArticles] = useState<Array<List>>([]);
 
     useEffect(() => {
         queryBlogList()
@@ -46,6 +46,10 @@ const Home: FC = () => {
                             </div>
                         </div>
                         <div className={styles.article_content}>{el.content}</div>
+                        <div className={styles.article_ratings}>
+                            <i className="iconfont icon-chakan"></i>
+                            <span className={styles.ratings_text}>{el.ratings}</span>
+                        </div>
                     </div>
                 ))}
             </Fragment>
