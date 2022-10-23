@@ -1,6 +1,7 @@
 import React, { Fragment, Suspense } from 'react';
 import BlogRouter from '@/router';
-import { useState } from 'react'
+import { useState } from 'react';
+import LoadingPage from './components/Loading';
 import './App.less';
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
 
   return (
     <Fragment>
-        <Suspense fallback={<div>loading</div>}>
+        <Suspense fallback={<LoadingPage />}>
           <BlogRouter />
         </Suspense>
     </Fragment>
