@@ -1,6 +1,6 @@
 import http from "./http";
 import { ResType } from "@/types/http";
-import { LoginRes, LoginReq, ListRes, AddReq, AddRes, DetailReq, DetailRes, UpdateReq } from "@/types/api";
+import { LoginRes, LoginReq, ListRes, AddReq, AddRes, DetailReq, DetailRes, UpdateReq, DeleteReq } from "@/types/api";
 
 /******************************* blog ****************************/
 export const GET_BLOG_LIST = (params: {}) => {
@@ -25,4 +25,8 @@ export const GET_ARTICLE_DETAIL = (params: DetailReq) => {
 
 export const UPDATE_ARTICLE = (params: UpdateReq) => {
     return http("/api/blog/update", "post", params);
+};
+
+export const DELETE_ARTICLE = (params: DeleteReq) => {
+    return http("/api/blog/delete", "post", params);
 };

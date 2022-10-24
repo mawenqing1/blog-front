@@ -39,3 +39,7 @@ export interface UpdateReq {
     title: string;
     content: string;
 }
+
+export interface DeleteReq {
+    id: number;
+}

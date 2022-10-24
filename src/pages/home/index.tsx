@@ -1,8 +1,9 @@
 import React, { FC, Fragment, useEffect, useState } from "react";
-import { GET_BLOG_LIST } from "@/api/api";
+import { GET_BLOG_LIST, DELETE_ARTICLE } from "@/api/api";
 import { formatDate } from "@/utils/utils";
 import { Article, List } from "@/types/home";
 import { useNavigate } from "react-router";
+import { Modal, message } from "antd";
 import styles from "./index.module.less";
 import SelfCard from "@/components/SelfCard";
 import BgA from "@/components/BgAnimatiion";
@@ -11,6 +12,7 @@ import ArticleCard from "@/components/ArticleList";
 const Home: FC = () => {
     const navigate = useNavigate();
     const [articles, setArticles] = useState<Array<List>>([]);
+    const isLogin = sessionStorage.getItem("BLOG_USER_NAME");
 
     useEffect(() => {
         queryBlogList()
@@ -24,6 +26,30 @@ const Home: FC = () => {
         if (code === 1) {
             setArticles(data)
         }
+    };
+
+    /**
+     * handle delete article event
+     * @param id article id
+     */
+    const handleDelete = (id: number) => {
+        const modal = Modal.confirm({
+            title: "提示",
+            content: "确定要删除吗？",
+            onOk: () => queryDelete(id)
+        });
+    };
+
+    const queryDelete = async (id: number) => {
+        const {code} = await DELETE_ARTICLE({
+            id
+        })
+        if(code === 1) {
+            message.success("删除成功");
+            location.reload();
+        } else {
+            message.error("删除失败")
+        }
     }
 
     /**
@@ -36,7 +62,7 @@ const Home: FC = () => {
             <Fragment>
                 {list.map(el => (
                     <div className={styles.article_main} key={el.id}>
-                        <header className={styles.article_title} onClick={() => navigate("/layout/detail", {state: {id: el.id}})}>{el.title}</header>
+                        <header className={styles.article_title} onClick={() => navigate("/layout/detail", { state: { id: el.id } })}>{el.title}</header>
                         <div className={styles.article_information}>
                             <div className={styles.article_author}>
                                 <i className="iconfont icon-zuozhe"></i>
@@ -51,6 +77,7 @@ const Home: FC = () => {
                         <div className={styles.article_ratings}>
                             <i className="iconfont icon-chakan"></i>
                             <span className={styles.ratings_text}>{el.ratings}</span>
+                            {isLogin && <span className={styles.delete_btn} onClick={() => handleDelete(el.id)}>删除</span>}
                         </div>
                     </div>
                 ))}
