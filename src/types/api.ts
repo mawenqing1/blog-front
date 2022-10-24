@@ -33,3 +33,9 @@ export interface DetailReq {
 }
 
 export interface DetailRes extends ListRes {}
+
+export interface UpdateReq {
+    id: number;
+    title: string;
+    content: string;
+}

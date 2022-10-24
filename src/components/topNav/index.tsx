@@ -17,16 +17,8 @@ const TopNav: FC = () => {
         },
         {
             text: "列表",
-            router: "/layout/article"
-        },
-        {
-            text: "归档",
-            router: "/"
-        },
-        {
-            text: "开源项目",
-            router: "/"
-        },
+            router: "/layout/home"
+        }
     ];
 
     const handleCloseModal = () => {

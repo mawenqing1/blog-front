@@ -1,9 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Editor } from "@bytemd/react";
 import { Modal, Input, Button, message } from "antd";
-import { ADD_ARTICLE } from "@/api/api";
+import { ADD_ARTICLE, UPDATE_ARTICLE } from "@/api/api";
 import { judgeStrNull } from "@/utils/utils";
 import { useNavigate } from "react-router";
+import { useLocation } from 'react-router-dom';
 import "./index.less";
 import zhHans from "bytemd/locales/zh_Hans.json";
 import gfm from "@bytemd/plugin-gfm";
@@ -22,6 +23,14 @@ const Article: FC = () => {
     const [value, setValue] = useState<string>("");
     const [title, setTitle] = useState<string>("");
     const navigate = useNavigate();
+    const { state } = useLocation();
+
+    useEffect(() => {
+        if(state?.id) {
+            setValue(state.content);
+            setTitle(state.title);
+        }
+    }, [])
 
     const handleIssue = () => {
         if(judgeStrNull(title)) {
@@ -40,14 +49,28 @@ const Article: FC = () => {
     };
 
     const addNewArticle = async () => {
-        const content = value.replace(/"/g, "V1#_1")
-        const { data, code } = await ADD_ARTICLE({
-            title,
-            content
-        });
-        if(code === 1) {
-            message.success("发布成功");
-            navigate("/layout/home")
+        const content = value.replace(/"/g, "V1#_1");
+        if(state?.id) {
+            const {code} = await UPDATE_ARTICLE({
+                id: state.id,
+                content: content,
+                title: title
+            })
+            if(code === 1) {
+                message.success("更新成功");
+                navigate("/layout/home")
+            } else {
+                message.error("更新失败");
+            }
+        } else {
+            const { data, code } = await ADD_ARTICLE({
+                title,
+                content
+            });
+            if(code === 1) {
+                message.success("发布成功");
+                navigate("/layout/home")
+            }
         }
     }
 

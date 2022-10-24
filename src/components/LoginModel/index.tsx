@@ -24,7 +24,8 @@ const LoginModel: FC<Props> = ({ visible, handleCloseModal, handleLogin }: Props
         if (code === 1) {
             handleCloseModal();
             handleLogin();
-            sessionStorage.setItem("BLOG_USER_NAME", data.realname)
+            sessionStorage.setItem("BLOG_USER_NAME", data.realname);
+            location.reload();
             msg.success(message)
         } else {
             msg.error(message)
