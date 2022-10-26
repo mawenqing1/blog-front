@@ -54,6 +54,9 @@ const LoginModel: FC<Props> = ({ visible, handleCloseModal, handleLogin }: Props
                     <span className={styles.password_text}>密码：</span>
                     <Input.Password placeholder="请输入密码" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
+                {/* <div className={styles.operation}>
+                    <span className={styles.register_btn}>点击注册</span>
+                </div> */}
             </Fragment>
         </Modal>
     )

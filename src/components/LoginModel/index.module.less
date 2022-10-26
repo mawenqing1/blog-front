@@ -3,11 +3,13 @@
         .ant-modal-header {
             border-bottom: none;
         }
+
         .ant-modal-footer {
             border-top: none;
         }
+
         .ant-modal-body {
-            padding: 10px 24px 24px;
+            padding: 10px 24px 8px;
         }
 
     }
@@ -15,18 +17,32 @@
     .user_name {
         display: flex;
         align-items: center;
+
         .name_text {
             width: 60px;
             white-space: nowrap;
         }
     }
+
     .user_password {
         margin-top: 20px;
         display: flex;
         align-items: center;
+
         .password_text {
             width: 60px;
             white-space: nowrap;
         }
     }
+
+    .operation {
+        margin-top: 8px;
+        display: flex;
+        .register_btn {
+            margin-left: auto;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+    }
+
 }
