@@ -1,42 +1,42 @@
-import React, { FC, Fragment, useEffect, useState } from "react";
-import { GET_BLOG_COUNT } from "@/api/api";
-import styles from "./index.module.less";
-import avatar from "@/assets/image/avatar.jpeg";
-import wx from "@/assets/image/wx.png";
+import React, { FC, Fragment, useEffect, useState } from 'react'
+import { GET_BLOG_COUNT } from '@/api/api'
+import styles from './index.module.less'
+import avatar from '@/assets/image/avatar.jpeg'
+import wx from '@/assets/image/wx.png'
 
 const SelfCard: FC = () => {
-    const [count, setCount] = useState<number>(0)
+  const [count, setCount] = useState<number>(0)
 
-    useEffect(() => {
-        queryBlogCount()
-    }, [])
+  useEffect(() => {
+    queryBlogCount()
+  }, [])
 
-    /**
+  /**
      * open link base click icon
      * @param type current click icon
      */
-    const openLink = (type: string) => {
-        switch (type) {
-            case 'github':
-                window.open("https://github.com/mawenqing1")
-                break;
-            case 'weixin':
-                window.open(wx)
-                break;
-            case 'juejin':
-                window.open("https://juejin.cn/user/4380933217592120")
-                break;
-        }
-    };
-
-    const queryBlogCount = async () => {
-        const {data, code} = await GET_BLOG_COUNT({});
-        if(code === 1) {
-            setCount(data)
-        }
+  const openLink = (type: string) => {
+    switch (type) {
+      case 'github':
+        window.open('https://github.com/mawenqing1')
+        break
+      case 'weixin':
+        window.open(wx)
+        break
+      case 'juejin':
+        window.open('https://juejin.cn/user/4380933217592120')
+        break
     }
+  }
 
-    return (
+  const queryBlogCount = async () => {
+    const { data, code } = await GET_BLOG_COUNT({})
+    if (code === 1) {
+      setCount(data)
+    }
+  }
+
+  return (
         <Fragment>
             <div className={styles.home_card}>
                 <div className={styles.card_top}>
@@ -59,7 +59,7 @@ const SelfCard: FC = () => {
                 </div>
             </div>
         </Fragment>
-    )
-};
+  )
+}
 
 export default SelfCard

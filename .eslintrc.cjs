@@ -1,24 +1,36 @@
 module.exports = {
-    env: {
-        browser: true,
-        es2021: true,
+  env: {
+    browser: true,
+    es2021: true
+  },
+  settings: {
+    react: {
+      version: '999.999.999'
+    }
+  },
+  extends: [
+    'plugin:react/recommended',
+    'standard-with-typescript',
+    // 'prettier',
+    // 'plugin:prettier/recommended'
+  ],
+  overrides: [
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
     },
-    extends: [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-    ],
-    overrides: [],
-    parser: "@typescript-eslint/parser",
-    parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-    },
-    plugins: ["react", "@typescript-eslint"],
-    rules: {
-        '@typescript-eslint/no-explicit-any': ['off'],
-		'no-unused-vars': 'off',
-		'no-undef': 'off',
-		'@typescript-eslint/no-non-null-assertion': ['off'],
-    },
-};
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json']
+  },
+  plugins: [
+    'react',
+    // 'prettier',
+    '@typescript-eslint'
+  ],
+  rules: {
+    // 'prettier/prettier': 'error'
+  }
+}

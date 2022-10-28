@@ -1,9 +1,8 @@
-import React, { FC, Fragment } from "react";
-import styles from "./index.module.less"
+import React, { FC, Fragment } from 'react'
+import styles from './index.module.less'
 
 const LoadingPage = () => {
-
-    return (
+  return (
         <Fragment>
             <main className={styles.loading_main}>
                 <div className={styles.loading_box}>
@@ -12,7 +11,7 @@ const LoadingPage = () => {
                 </div>
             </main>
         </Fragment>
-    )
+  )
 }
 
 export default LoadingPage

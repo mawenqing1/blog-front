@@ -1,42 +1,42 @@
-import React, { FC, Fragment, useEffect, useState } from "react";
-import { LOGIN } from "@/api/api";
-import { Modal, Input, message as msg } from "antd";
-import styles from "./index.module.less";
+import React, { FC, Fragment, useEffect, useState } from 'react'
+import { LOGIN } from '@/api/api'
+import { Modal, Input, message as msg } from 'antd'
+import styles from './index.module.less'
 
 interface Props {
-    visible: boolean;
-    handleCloseModal: () => void;
-    handleLogin: () => void;
+  visible: boolean
+  handleCloseModal: () => void
+  handleLogin: () => void
 }
 
 const LoginModel: FC<Props> = ({ visible, handleCloseModal, handleLogin }: Props) => {
-    const [open, setOpen] = useState<boolean>(false);
-    const [confirmLoading, setConfirmLoading] = useState<boolean>(false);
-    const [username, setUsername] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
+  const [open, setOpen] = useState<boolean>(false)
+  const [confirmLoading, setConfirmLoading] = useState<boolean>(false)
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
 
-    const handleOk = async () => {
-        const { data, code, message } = await LOGIN({
-            username,
-            password
-        });
+  const handleOk = async () => {
+    const { data, code, message } = await LOGIN({
+      username,
+      password
+    })
 
-        if (code === 1) {
-            handleCloseModal();
-            handleLogin();
-            sessionStorage.setItem("BLOG_USER_NAME", data.realname);
-            location.reload();
-            msg.success(message)
-        } else {
-            msg.error(message)
-        }
-    };
-
-    const handleCancel = () => {
-        handleCloseModal();
+    if (code === 1) {
+      handleCloseModal()
+      handleLogin()
+      sessionStorage.setItem('BLOG_USER_NAME', data.realname)
+      location.reload()
+      msg.success(message)
+    } else {
+      msg.error(message)
     }
+  }
 
-    return (
+  const handleCancel = () => {
+    handleCloseModal()
+  }
+
+  return (
         <Modal
             title="登陆"
             className={styles.custom_login_modal}
@@ -59,7 +59,7 @@ const LoginModel: FC<Props> = ({ visible, handleCloseModal, handleLogin }: Props
                 </div> */}
             </Fragment>
         </Modal>
-    )
+  )
 }
 
 export default LoginModel

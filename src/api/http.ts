@@ -1,20 +1,20 @@
-import axios, { AxiosPromise } from "axios";
-import { checkUrl } from "@/utils/utils";
-import { message } from 'antd';
-import { ResType } from "@/types/http"
-import { resolve } from "path";
+import axios, { AxiosPromise } from 'axios'
+import { checkUrl } from '@/utils/utils'
+import { message } from 'antd'
+import { ResType } from '@/types/http'
+import { resolve } from 'path'
 
 /*
  * 基础配置
  * */
-let instance = axios.create({
-    baseURL: checkUrl(),
-    withCredentials: false,
-    timeout: 50000,
-});
+const instance = axios.create({
+  baseURL: checkUrl(),
+  withCredentials: false,
+  timeout: 50000
+})
 
-instance.defaults.headers.post["Content-Type"] =
-    "application/x-www-form-urlencoded";
+instance.defaults.headers.post['Content-Type'] =
+    'application/x-www-form-urlencoded'
 /**
  * 请求失败后的错误统一处理
  * @param {Number} status 请求失败的状态码
@@ -34,8 +34,8 @@ instance.defaults.headers.post["Content-Type"] =
  *       default: message = '异常问题，请联系管理员！'; break
  */
 const errorHandle = (status: number, msg: string) => {
-    message.error(msg);
-};
+  message.error(msg)
+}
 /*
  * 请求拦截
  * 每次发送请求之前判断localStorage中是否存在token
@@ -43,47 +43,47 @@ const errorHandle = (status: number, msg: string) => {
  * 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
  * */
 instance.interceptors.request.use(
-    (request) => {
-        // request.headers["MWQ_ACCESS_TOKEN"] =
-        //     localStorage.getItem("MWQ_ACCESS_TOKEN");
-        return request;
-    },
-    function (error) {
-        return Promise.reject(error);
-    }
-);
+  (request) => {
+    // request.headers["MWQ_ACCESS_TOKEN"] =
+    //     localStorage.getItem("MWQ_ACCESS_TOKEN");
+    return request
+  },
+  async function (error) {
+    return await Promise.reject(error)
+  }
+)
 /*
  * 响应拦截
  * 请求成功的(status === 200)的直接返回，非200的异常处理走errorHandle
  * 具体要和服务端进行沟通
  * **/
 instance.interceptors.response.use(
-    function (res) {
-        if (res.status === 200) {
-            return Promise.resolve(res.data);
-        } else {
-            return Promise.reject(res);
-        }
-    },
-    function (res) {
-        //请求已发出，但是不在2xx的范围
-        if (res && res.response) {
-            let msg = "系统异常";
-            if (res.data && res.data.message) {
-                msg = res.data.message;
-            }
-            errorHandle(res.response.status, msg);
-            return Promise.reject(res);
-        } else {
-            // 处理其他的情况
-            if (!window.navigator.onLine) {
-                //todo..
-            } else {
-                return Promise.reject(res);
-            }
-        }
+  async function (res) {
+    if (res.status === 200) {
+      return await Promise.resolve(res.data)
+    } else {
+      return await Promise.reject(res)
     }
-);
+  },
+  function (res) {
+    // 请求已发出，但是不在2xx的范围
+    if (res && res.response) {
+      let msg = '系统异常'
+      if (res.data && res.data.message) {
+        msg = res.data.message
+      }
+      errorHandle(res.response.status, msg)
+      return Promise.reject(res)
+    } else {
+      // 处理其他的情况
+      if (!window.navigator.onLine) {
+        // todo..
+      } else {
+        return Promise.reject(res)
+      }
+    }
+  }
+)
 /*
  * export default instance;
  * 1. 如果是get请求  需要使用params来传递data  ?a=10&c=10
@@ -93,14 +93,14 @@ instance.interceptors.response.use(
  * 在对象，['params']:data ===== params:data 这样理解
  *
  * */
-export default <T>(url: string, method: string, data: any): Promise<ResType<T>> => {
-    return  new Promise((resole)=>{
-        instance({
-            url,
-            method,
-            [method.toLowerCase() === "get" ? "params" : "data"]: data,
-        }).then((res:any) => {
-            resole(res)
-        })
+export default async <T>(url: string, method: string, data: any): Promise<ResType<T>> => {
+  return await new Promise((resole) => {
+    instance({
+      url,
+      method,
+      [method.toLowerCase() === 'get' ? 'params' : 'data']: data
+    }).then((res: any) => {
+      resole(res)
     })
-};
+  })
+}
