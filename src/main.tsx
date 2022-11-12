@@ -8,10 +8,8 @@ import { ConfigProvider } from 'antd'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <ConfigProvider locale={zhCN}>
-  {/* <React.StrictMode> */}
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  {/* </React.StrictMode> */}
   </ConfigProvider>
 )
