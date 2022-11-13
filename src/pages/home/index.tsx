@@ -8,6 +8,7 @@ import styles from './index.module.less'
 import SelfCard from '@/components/SelfCard'
 import BgA from '@/components/BgAnimatiion'
 import ArticleCard from '@/components/ArticleList'
+import ClassifyCard from '@/components/Classify'
 
 const Home: FC = () => {
   const navigate = useNavigate()
@@ -97,6 +98,7 @@ const Home: FC = () => {
                 </div>
                 <div className={styles.home_right}>
                     <ArticleCard />
+                    <ClassifyCard />
                 </div>
             </div>
         </Fragment>
