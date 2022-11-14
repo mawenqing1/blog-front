@@ -5,6 +5,7 @@ export interface Article {
   createtime: number
   id: number
   ratings: number
+  tag: string
 }
 
 export interface List {
@@ -14,4 +15,5 @@ export interface List {
   id: number
   title: string
   ratings: number
+  tag: string
 }
