@@ -69,11 +69,12 @@ const Article: FC = () => {
 
   const addNewArticle = async () => {
     const content = value.replace(/"/g, 'V1#_1')
-    if (state?.id) {
+    if (state?.id) {  
       const { code } = await UPDATE_ARTICLE({
         id: state.id,
-        content: content,
-        title: title
+        content,
+        title,
+        tag
       })
       if (code === 1) {
         message.success('更新成功')
@@ -84,7 +85,8 @@ const Article: FC = () => {
     } else {
       const { data, code } = await ADD_ARTICLE({
         title,
-        content
+        content,
+        tag
       })
       if (code === 1) {
         message.success('发布成功')
@@ -102,7 +104,7 @@ const Article: FC = () => {
       <header className="editor_header">
         <Input placeholder="请输入标题" size="large" value={title} onChange={(e: { target: { value: React.SetStateAction<string> } }) => setTitle(e.target.value)} />
         <Select
-          defaultValue="js"
+          defaultValue={tag}
           style={{ width: 120 }}
           onChange={handleChange}
           options={options}

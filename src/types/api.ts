@@ -23,6 +23,7 @@ export interface ListRes {
 export interface AddReq {
   content: string
   title: string
+  tag: string
 }
 
 export interface AddRes {
@@ -39,6 +40,7 @@ export interface UpdateReq {
   id: number
   title: string
   content: string
+  tag: string
 }
 
 export interface DeleteReq {
