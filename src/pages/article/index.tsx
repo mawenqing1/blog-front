@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import { Editor } from '@bytemd/react'
-import { Modal, Input, Button, message } from 'antd'
+import { Modal, Input, Button, message, Select } from 'antd'
 import { ADD_ARTICLE, UPDATE_ARTICLE } from '@/api/api'
 import { judgeStrNull } from '@/utils/utils'
 import { useNavigate } from 'react-router'
@@ -17,11 +17,30 @@ import 'bytemd/dist/index.min.css'
 import 'highlight.js/styles/vs.css'
 import 'juejin-markdown-themes/dist/juejin.min.css'
 
-const plugins = [gfm(), gemoji(), highlight(), mediumZoom(), mermaid(), frontmatter()]
+const plugins = [gfm(), gemoji(), highlight(), mediumZoom(), mermaid(), frontmatter()];
+const options = [
+  {
+    label: 'JavaScript',
+    value: 'js'
+  },
+  {
+    label: '计算机基础',
+    value: 'fc'
+  },
+  {
+    label: 'Node',
+    value: 'node'
+  },
+  {
+    label: '算法',
+    value: 'alg'
+  }
+];
 
 const Article: FC = () => {
   const [value, setValue] = useState<string>('')
   const [title, setTitle] = useState<string>('')
+  const [tag, setTag] = useState<string>('js');
   const navigate = useNavigate()
   const { state } = useLocation()
 
@@ -74,21 +93,31 @@ const Article: FC = () => {
     }
   }
 
+  const handleChange = (value: string) => {
+    setTag(value)
+  };
+
   return (
-        <div className="editor_box">
-            <header className="editor_header">
-            <Input placeholder="请输入标题" size="large" value={title} onChange={(e: { target: { value: React.SetStateAction<string> } }) => setTitle(e.target.value)} />
-            <Button type="primary" onClick={() => handleIssue()}>发布</Button>
-            </header>
-            <Editor
-                locale={zhHans}
-                value={value}
-                plugins={plugins}
-                onChange={(v) => {
-                  setValue(v)
-                }}
-            />
-        </div>
+    <div className="editor_box">
+      <header className="editor_header">
+        <Input placeholder="请输入标题" size="large" value={title} onChange={(e: { target: { value: React.SetStateAction<string> } }) => setTitle(e.target.value)} />
+        <Select
+          defaultValue="js"
+          style={{ width: 120 }}
+          onChange={handleChange}
+          options={options}
+        />
+        <Button type="primary" onClick={() => handleIssue()}>发布</Button>
+      </header>
+      <Editor
+        locale={zhHans}
+        value={value}
+        plugins={plugins}
+        onChange={(v) => {
+          setValue(v)
+        }}
+      />
+    </div>
   )
 }
 

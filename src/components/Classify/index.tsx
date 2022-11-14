@@ -1,7 +1,12 @@
-import React, { FC, Fragment } from "react";
+import React, { FC, Fragment, useEffect } from "react";
+import { GET_TAG_LIST } from "@/api/api";
 import styles from "./index.module.less";
 
 const ClassifyCard: FC = () => {
+    useEffect(() => {
+        queryTagList()
+    },[])
+
     const list = [
         {
             type: 'js',
@@ -16,6 +21,13 @@ const ClassifyCard: FC = () => {
             number: 0
         }
     ];
+
+    const queryTagList = async () => {
+        const {code, data} = await GET_TAG_LIST({});
+        if(code === 1) {
+            console.log(data);
+        }
+    }
 
     const renderList = () => {
         return (

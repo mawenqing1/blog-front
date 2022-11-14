@@ -43,3 +43,8 @@ export interface UpdateReq {
 export interface DeleteReq {
   id: number
 }
+
+export interface TagListReq {
+  tag: string,
+  cnt: number
+}
