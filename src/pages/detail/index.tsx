@@ -1,6 +1,6 @@
 import React, { FC, Fragment, useEffect, useState } from 'react'
 import { GET_ARTICLE_DETAIL } from '@/api/api'
-import { formatDate } from '@/utils/utils'
+import { formatDate, returnTagName } from '@/utils/utils'
 import { useNavigate } from 'react-router'
 import { useLocation } from 'react-router-dom'
 import { DetailData } from '@/types/detail'
@@ -52,6 +52,7 @@ const ArticleDetail: FC = () => {
                         <span>{articleData?.author}</span>
                         <span className="article_time">{formatDate(new Date(articleData?.createtime as number))}</span>
                         <span>  ·  阅读 {articleData?.ratings}</span>
+                        <span className='article_tag'>标签：{returnTagName(articleData?.tag!)}</span>
                         {isLogin && <span className="article_editor_brn" onClick={handleEditor}>编辑</span>}
                     </div>
                     <Viewer value={articleData?.content as string} plugins={plugins} />

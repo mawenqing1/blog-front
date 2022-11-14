@@ -5,4 +5,5 @@ export interface DetailData {
   createtime: number
   author: string
   ratings: number
+  tag: string
 }

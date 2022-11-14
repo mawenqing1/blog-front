@@ -17,6 +17,7 @@ export interface ListRes {
   id: number
   title: string
   ratings: number
+  tag: string
 }
 
 export interface AddReq {
