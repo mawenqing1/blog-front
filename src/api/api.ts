@@ -32,5 +32,5 @@ export const DELETE_ARTICLE = async (params: h.DeleteReq) => {
 }
 
 export const GET_TAG_LIST = async (params: {}) => {
-  return await http('/api/blog/tagList', 'get', params)
+  return await http<h.TagListReq[]>('/api/blog/tagList', 'get', params)
 }

@@ -45,6 +45,6 @@ export interface DeleteReq {
 }
 
 export interface TagListReq {
-  tag: string,
-  cnt: number
+  tag?: string,
+  cnt?: number
 }

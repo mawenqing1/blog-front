@@ -42,3 +42,36 @@ export const judgeStrNull = (str: string) => {
     return false
   }
 }
+
+/**
+ * return tag name
+ * @param tag article tag
+ * @returns tag name
+ */
+export const returnTagName = (tag: string) => {
+  const options = [
+      {
+          label: 'JavaScript',
+          value: 'js'
+      },
+      {
+          label: '计算机基础',
+          value: 'fc'
+      },
+      {
+          label: 'Node',
+          value: 'node'
+      },
+      {
+          label: '算法',
+          value: 'alg'
+      }
+  ];
+  let tagName = '';
+  options.map(el => {
+      if (tag === el.value) {
+          tagName = el.label;
+      }
+  });
+  return tagName
+}

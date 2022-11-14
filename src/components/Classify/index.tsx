@@ -1,41 +1,29 @@
-import React, { FC, Fragment, useEffect } from "react";
+import React, { FC, Fragment, useEffect, useState } from "react";
 import { GET_TAG_LIST } from "@/api/api";
+import { returnTagName } from "@/utils/utils";
 import styles from "./index.module.less";
 
 const ClassifyCard: FC = () => {
+    const [list, setList] = useState<{ tag?: string, cnt?: number }[]>([]);
+
     useEffect(() => {
         queryTagList()
-    },[])
-
-    const list = [
-        {
-            type: 'js',
-            number: 0
-        },
-        {
-            type: 'front',
-            number: 0
-        },
-        {
-            type: 'node',
-            number: 0
-        }
-    ];
+    }, [])
 
     const queryTagList = async () => {
-        const {code, data} = await GET_TAG_LIST({});
-        if(code === 1) {
-            console.log(data);
+        const { code, data } = await GET_TAG_LIST({});
+        if (code === 1) {
+            setList(data)
         }
-    }
+    };
 
     const renderList = () => {
         return (
             <Fragment>
                 {list.map(el => (
-                    <div className={styles.classify_list} key={el.type}>
-                        <span className={styles.classify_type}>{el.type}</span>
-                        <span className={styles.classify_num}>{el.number}</span>
+                    <div className={styles.classify_list} key={el.tag}>
+                        <span className={styles.classify_type}>{returnTagName(el.tag!)}</span>
+                        <span className={styles.classify_num}>{el.cnt}</span>
                     </div>
                 ))}
             </Fragment>
