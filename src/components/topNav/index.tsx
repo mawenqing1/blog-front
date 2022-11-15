@@ -15,10 +15,10 @@ const TopNav: FC = () => {
       text: '主页',
       router: '/layout/home'
     },
-    {
-      text: '列表',
-      router: '/layout/home'
-    }
+    // {
+    //   text: '留言',
+    //   router: '/layout/words'
+    // }
   ]
 
   const handleCloseModal = () => {

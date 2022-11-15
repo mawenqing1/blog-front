@@ -5,6 +5,7 @@ import Layouts from '@/pages/layout'
 const Home = lazy(async () => await import('@/pages/home'))
 const Article = lazy(async () => await import('@/pages/article'))
 const Detail = lazy(async () => await import('@/pages/detail'))
+const Words = lazy(async () => await import('@/pages/words'))
 
 const routes: RouteObject[] = [
   {
@@ -30,6 +31,10 @@ const routes: RouteObject[] = [
       {
         path: 'detail',
         element: <Detail />
+      },
+      {
+        path: 'words',
+        element: <Words />
       }
     ]
   }
