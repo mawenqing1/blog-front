@@ -22,8 +22,10 @@ const Home: FC = () => {
   /**
      * query blog list
      */
-  const queryBlogList = async () => {
-    const { data, code } = await GET_BLOG_LIST({})
+  const queryBlogList = async (tag?: string) => {
+    const { data, code } = await GET_BLOG_LIST({
+      tag
+    })
     if (code === 1) {
       setArticles(data)
     }
@@ -41,6 +43,10 @@ const Home: FC = () => {
     })
   }
 
+  /**
+   * delete article id
+   * @param id article id
+   */
   const queryDelete = async (id: number) => {
     const { code } = await DELETE_ARTICLE({
       id
@@ -102,7 +108,7 @@ const Home: FC = () => {
         </div>
         <div className={styles.home_right}>
           <ArticleCard />
-          <ClassifyCard />
+          <ClassifyCard selectTag={queryBlogList} />
         </div>
       </div>
     </Fragment>

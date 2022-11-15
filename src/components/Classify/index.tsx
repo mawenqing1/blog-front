@@ -3,7 +3,11 @@ import { GET_TAG_LIST } from "@/api/api";
 import { returnTagName } from "@/utils/utils";
 import styles from "./index.module.less";
 
-const ClassifyCard: FC = () => {
+interface Props {
+    selectTag: (tag: string) => void
+}
+
+const ClassifyCard: FC<Props> = ({selectTag}: Props) => {
     const [list, setList] = useState<{ tag?: string, cnt?: number }[]>([]);
 
     useEffect(() => {
@@ -21,7 +25,7 @@ const ClassifyCard: FC = () => {
         return (
             <Fragment>
                 {list.map(el => (
-                    <div className={styles.classify_list} key={el.tag}>
+                    <div className={styles.classify_list} key={el.tag} onClick={() => selectTag(el.tag)}>
                         <span className={styles.classify_type}>{returnTagName(el.tag!)}</span>
                         <span className={styles.classify_num}>{el.cnt}</span>
                     </div>
