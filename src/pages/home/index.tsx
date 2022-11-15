@@ -22,7 +22,7 @@ const Home: FC = () => {
   /**
      * query blog list
      */
-  const queryBlogList = async (tag?: string | undefined) => {
+  const queryBlogList = async (tag: string = "" ) => {
     const { data, code } = await GET_BLOG_LIST({
       tag
     })
