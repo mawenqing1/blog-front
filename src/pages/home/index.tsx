@@ -22,9 +22,9 @@ const Home: FC = () => {
   /**
      * query blog list
      */
-  const queryBlogList = async (tag?: undefined) => {
+  const queryBlogList = async (tag?: string) => {
     const { data, code } = await GET_BLOG_LIST({
-      tag
+      tag: tag ? tag : ""
     })
     if (code === 1) {
       setArticles(data)
