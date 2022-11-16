@@ -25,10 +25,10 @@ const ClassifyCard: FC<Props> = ({selectTag}: Props) => {
         // onClick={() => selectTag(el?.tag)}
         return (
             <Fragment>
-                {list.map(el => (
+                {list?.map(el => (
                     <div className={styles.classify_list} key={el?.tag} >
-                        <span className={styles.classify_type}>{returnTagName(el.tag)}</span>
-                        <span className={styles.classify_num}>{el.cnt}</span>
+                        <span className={styles.classify_type}>{returnTagName(el?.tag || '')}</span>
+                        <span className={styles.classify_num}>{el?.cnt}</span>
                     </div>
                 ))}
             </Fragment>
