@@ -39,7 +39,7 @@ const ClassifyCard: FC<Props> = ({selectTag}: Props) => {
         <Fragment>
             <div className={styles.classify_box}>
                 <header className={styles.classify_title}>分类</header>
-                {list.length>0 && renderList()}
+                {/* {list.length>0 && renderList()} */}
             </div>
         </Fragment>
     )
