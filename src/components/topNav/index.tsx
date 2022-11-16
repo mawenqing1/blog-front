@@ -16,7 +16,7 @@ const TopNav: FC = () => {
       router: '/layout/home'
     },
     // {
-    //   text: '留言',
+    //   text: '留言板',
     //   router: '/layout/words'
     // }
   ]
