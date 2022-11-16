@@ -16,13 +16,13 @@ const Home: FC = () => {
   const isLogin = sessionStorage.getItem('BLOG_USER_NAME')
 
   useEffect(() => {
-    queryBlogList()
+    queryBlogList('')
   }, [])
 
   /**
      * query blog list
      */
-  const queryBlogList = async (tag?: string) => {
+  const queryBlogList = async (tag: string) => {
     const { data, code } = await GET_BLOG_LIST({
       tag
     })
