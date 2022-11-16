@@ -4,7 +4,7 @@ import { returnTagName } from "@/utils/utils";
 import styles from "./index.module.less";
 
 interface Props {
-    selectTag: (tag:string) => void
+    selectTag: (tag?:string) => void
 }
 
 const ClassifyCard: FC<Props> = ({selectTag}: Props) => {
@@ -21,25 +21,24 @@ const ClassifyCard: FC<Props> = ({selectTag}: Props) => {
         }
     };
 
-    // const renderList = () => {
-    //     // onClick={() => selectTag(el?.tag)}
-    //     return (
-    //         <Fragment>
-    //             {list?.map(el => (
-    //                 <div className={styles.classify_list} key={el?.tag} >
-    //                     <span className={styles.classify_type}>{returnTagName(el?.tag || '')}</span>
-    //                     <span className={styles.classify_num}>{el?.cnt}</span>
-    //                 </div>
-    //             ))}
-    //         </Fragment>
-    //     )
-    // }
+    const renderList = () => {
+        return (
+            <Fragment>
+                {list?.map(el => (
+                    <div className={styles.classify_list} key={el.tag} onClick={() => selectTag(el.tag)} >
+                        <span className={styles.classify_type}>{returnTagName(el.tag)}</span>
+                        <span className={styles.classify_num}>{el.cnt}</span>
+                    </div>
+                ))}
+            </Fragment>
+        )
+    }
 
     return (
         <Fragment>
             <div className={styles.classify_box}>
                 <header className={styles.classify_title}>分类</header>
-                {/* {list.length>0 && renderList()} */}
+                {list.length >0 &&renderList()}
             </div>
         </Fragment>
     )

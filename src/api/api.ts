@@ -3,7 +3,7 @@ import { ResType } from '@/types/http'
 import * as h from '@/types/api'
 
 /** ***************************** blog ****************************/
-export const GET_BLOG_LIST = async (params: {}) => {
+export const GET_BLOG_LIST = async (params: h.ListReq) => {
   return await http<h.ListRes[]>('/api/blog/list', 'get', params)
 }
 

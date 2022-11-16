@@ -8,6 +8,10 @@ export interface LoginReq {
   password: string
 }
 
+export interface ListReq {
+  tag?: string
+}
+
 export interface ListRes {
   author: string
   content: string
