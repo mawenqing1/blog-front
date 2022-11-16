@@ -4,7 +4,7 @@ import { returnTagName } from "@/utils/utils";
 import styles from "./index.module.less";
 
 interface Props {
-    selectTag: (tag?: string) => void
+    selectTag: (tag:string) => void
 }
 
 const ClassifyCard: FC<Props> = ({selectTag}: Props) => {
