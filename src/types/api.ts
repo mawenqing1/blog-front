@@ -1,5 +1,3 @@
-import { type } from 'os'
-
 export interface LoginRes {
   username: string
   realname: string
