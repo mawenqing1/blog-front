@@ -48,6 +48,24 @@
         }
     }
 
+    .words_input {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 15px;
+        background-color: rgba(0, 0, 0, 0.05);
+        :global {
+            .ant-form-item-control-input-content {
+                width: 100%;
+                .ant-input {
+                    width: 100px;
+                }
+                .ant-btn {
+                    float: right;
+                }
+            }
+        }
+    }
+
     @keyframes identifier {
         0% {
             transform: translateY(20px);

@@ -2,6 +2,13 @@ import React, { FC, Fragment, useRef } from "react";
 import { Input, Button, message as msg, Form, FormInstance } from 'antd';
 import styles from './index.module.less';
 
+interface FinishProps {
+    name: string
+    words: string
+}
+
+const { TextArea } = Input;
+
 const LeaveWords: FC = () => {
     const formRef = useRef<FormInstance<any>>(null);
 
@@ -18,15 +25,23 @@ const LeaveWords: FC = () => {
         )
     };
 
+    const onFinish = (value: FinishProps) => {
+        console.log(value);
+    };
+
+    const onFinishFailed = () => {
+        msg.error("请输入完整信息！")
+    }
+
     const renderCommentBox = () => {
         return (
             <div className={styles.words_input}>
                 <Form
                     name="comment"
                     ref={formRef}
-                    labelCol={{ span: 5 }}
-                    wrapperCol={{ span: 16 }}
                     initialValues={{ remember: false }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
                     <Form.Item
@@ -34,7 +49,7 @@ const LeaveWords: FC = () => {
                         name='words'
                         rules={[{ required: true, message: '请输入留言!' }]}
                     >
-                        <Input placeholder="请输入留言" />
+                        <TextArea placeholder="请输入留言" style={{width: '100%', resize: 'none'}} rows={4} maxLength={200} />
                     </Form.Item>
                     <Form.Item
                         label="您的名字"
@@ -43,9 +58,9 @@ const LeaveWords: FC = () => {
                     >
                         <Input placeholder="请输入名字" />
                     </Form.Item>
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                    <Form.Item>
                         <Button type="primary" htmlType="submit">
-                            Submit
+                            提交
                         </Button>
                     </Form.Item>
                 </Form>
