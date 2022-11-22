@@ -16,6 +16,10 @@ const LeaveWords: FC = () => {
         return (
             <div className={styles.comment_list}>
                 <p className={styles.comment_user}>马文卿：</p>
+                <div className={styles.comment_reference}>
+                    <p className={styles.reference_user}>引用mwq的发言:</p>
+                    <span>实现方法：在本地数据库建一张消息表，将消息数据与业务数据保存在同一数据库实例里，这样就可以利用本地数据库的事务机制。事务提交成功后，将消息表中的消息转移到消息队列中，若转移消息成功则删除消息表中的数据，否则继续重传</span>
+                </div>
                 <p className={styles.comment_body}>实现方法：在本地数据库建一张消息表，将消息数据与业务数据保存在同一数据库实例里，这样就可以利用本地数据库的事务机制。事务提交成功后，将消息表中的消息转移到消息队列中，若转移消息成功则删除消息表中的数据，否则继续重传</p>
                 <div className={styles.comment_footer}>
                     <span className={styles.comment_time}>2022年11月 4日 08:30</span>
@@ -49,7 +53,7 @@ const LeaveWords: FC = () => {
                         name='words'
                         rules={[{ required: true, message: '请输入留言!' }]}
                     >
-                        <TextArea placeholder="请输入留言" style={{width: '100%', resize: 'none'}} rows={4} maxLength={200} />
+                        <TextArea placeholder="请输入留言" style={{ width: '100%', resize: 'none' }} rows={4} maxLength={200} />
                     </Form.Item>
                     <Form.Item
                         label="您的名字"
@@ -60,7 +64,7 @@ const LeaveWords: FC = () => {
                     </Form.Item>
                     <Form.Item>
                         <Button type="primary" htmlType="submit">
-                            提交
+                            发表
                         </Button>
                     </Form.Item>
                 </Form>
