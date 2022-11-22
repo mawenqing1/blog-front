@@ -12,18 +12,25 @@ const { TextArea } = Input;
 const LeaveWords: FC = () => {
     const formRef = useRef<FormInstance<any>>(null);
 
+    const renderReferenceBox = () => {
+        return (
+            <div className={styles.comment_reference}>
+                <p className={styles.reference_user}>引用mwq的发言:</p>
+                <span>实现方法：在本地数据库建一张消息表，将消息数据与业务数据保存在同一数据库实例里，这样就可以利用本地数据库的事务机制。事务提交成功后，将消息表中的消息转移到消息队列中，若转移消息成功则删除消息表中的数据，否则继续重传</span>
+            </div>
+        )
+    }
+
     const renderCommentList = () => {
         return (
             <div className={styles.comment_list}>
                 <p className={styles.comment_user}>马文卿：</p>
-                <div className={styles.comment_reference}>
-                    <p className={styles.reference_user}>引用mwq的发言:</p>
-                    <span>实现方法：在本地数据库建一张消息表，将消息数据与业务数据保存在同一数据库实例里，这样就可以利用本地数据库的事务机制。事务提交成功后，将消息表中的消息转移到消息队列中，若转移消息成功则删除消息表中的数据，否则继续重传</span>
-                </div>
+                {renderReferenceBox()}
                 <p className={styles.comment_body}>实现方法：在本地数据库建一张消息表，将消息数据与业务数据保存在同一数据库实例里，这样就可以利用本地数据库的事务机制。事务提交成功后，将消息表中的消息转移到消息队列中，若转移消息成功则删除消息表中的数据，否则继续重传</p>
                 <div className={styles.comment_footer}>
                     <span className={styles.comment_time}>2022年11月 4日 08:30</span>
-                    <span>浙江</span>
+                    <span className={styles.comment_city}>浙江</span>
+                    <span className={styles.comment_reference_btn}>引用</span>
                 </div>
             </div>
         )
@@ -35,11 +42,24 @@ const LeaveWords: FC = () => {
 
     const onFinishFailed = () => {
         msg.error("请输入完整信息！")
+    };
+
+    const renderWordsReference = () => {
+        return (
+            <div className={styles.words_reference}>
+                <p className={styles.words_user}>引用mwq的发言:</p>
+                <span>实现方法：在本地数据库建一张消息表，将消息数据与业务数据保存在同一数据库实例里，这样就可以利用本地数据库的事务机制。事务提交成功后，将消息表中的消息转移到消息队列中，若转移消息成功则删除消息表中的数据，否则继续重传</span>
+                <div className={styles.cancel_reference}>
+                    <span>取消引用</span>
+                </div>
+            </div>
+        )
     }
 
     const renderCommentBox = () => {
         return (
             <div className={styles.words_input}>
+                {renderWordsReference()}
                 <Form
                     name="comment"
                     ref={formRef}
