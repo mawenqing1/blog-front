@@ -1,5 +1,6 @@
 import React, { FC, Fragment, useRef } from "react";
-import { Input, Button, message as msg, Form, FormInstance } from 'antd';
+import { ADD_COMMENT } from "@/api/api";
+import { Input, Button, message as msg, Form, FormInstance, Pagination, PaginationProps } from 'antd';
 import styles from './index.module.less';
 
 interface FinishProps {
@@ -12,6 +13,10 @@ const { TextArea } = Input;
 const LeaveWords: FC = () => {
     const formRef = useRef<FormInstance<any>>(null);
 
+    /**
+     * render reference box
+     * @returns reference box HTML
+     */
     const renderReferenceBox = () => {
         return (
             <div className={styles.comment_reference}>
@@ -21,6 +26,10 @@ const LeaveWords: FC = () => {
         )
     }
 
+    /**
+     * render comment list
+     * @returns comment list HTML
+     */
     const renderCommentList = () => {
         return (
             <div className={styles.comment_list}>
@@ -36,10 +45,24 @@ const LeaveWords: FC = () => {
         )
     };
 
-    const onFinish = (value: FinishProps) => {
+    /**
+     * handle click submit btn event
+     * @param value form data
+     */
+    const onFinish = async (value: FinishProps) => {
         console.log(value);
+        const { code } = await ADD_COMMENT({
+            content: value.words,
+            name: value.name
+        })
+        if( code === 1) {
+            msg.success("发表成功")
+        }
     };
 
+    /**
+     * 
+     */
     const onFinishFailed = () => {
         msg.error("请输入完整信息！")
     };
@@ -90,7 +113,11 @@ const LeaveWords: FC = () => {
                 </Form>
             </div>
         )
-    }
+    };
+
+    const onShowSizeChange: PaginationProps['onShowSizeChange'] = (current, pageSize) => {
+        console.log(current, pageSize);
+    };
 
     return (
         <Fragment>
@@ -100,6 +127,9 @@ const LeaveWords: FC = () => {
                         <h1>留言板</h1>
                     </div>
                     {renderCommentList()}
+                    <div className={styles.words_pagination}>
+                        <Pagination defaultCurrent={1} total={50} showSizeChanger onShowSizeChange={onShowSizeChange} />
+                    </div>
                     {renderCommentBox()}
                 </div>
             </div>

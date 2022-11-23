@@ -34,3 +34,7 @@ export const DELETE_ARTICLE = async (params: h.DeleteReq) => {
 export const GET_TAG_LIST = async (params: {}) => {
   return await http<h.TagListReq[]>('/api/blog/tagList', 'get', params)
 }
+
+export const ADD_COMMENT = async (params: h.AddCommentReq) => {
+  return await http<h.TagListReq[]>('/api/comment/add', 'post', params)
+}

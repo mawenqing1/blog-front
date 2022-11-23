@@ -6,6 +6,17 @@
     overflow-y: auto;
     animation: identifier 1s ease;
 
+    .words_pagination {
+        margin-top: 12px;
+        display: flex;
+        :global {
+            .ant-pagination {
+                margin-left: auto;
+            }
+    }
+
+    }
+
     .words_body {
         height: max-content;
         width: 100%;

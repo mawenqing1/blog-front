@@ -50,6 +50,11 @@ export interface DeleteReq {
 }
 
 export interface TagListReq {
-  tag: string,
+  tag: string
   cnt: number
+}
+
+export interface AddCommentReq {
+  content: string
+  name: string
 }
