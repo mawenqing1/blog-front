@@ -57,4 +57,5 @@ export interface TagListReq {
 export interface AddCommentReq {
   content: string
   name: string
+  toId: number | null
 }

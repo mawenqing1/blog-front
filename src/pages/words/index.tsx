@@ -53,7 +53,8 @@ const LeaveWords: FC = () => {
         console.log(value);
         const { code } = await ADD_COMMENT({
             content: value.words,
-            name: value.name
+            name: value.name,
+            toId: null
         })
         if( code === 1) {
             msg.success("发表成功")
