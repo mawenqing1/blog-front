@@ -59,3 +59,8 @@ export interface AddCommentReq {
   name: string
   toId: number | null
 }
+
+export interface GetCommentList {
+  current: number
+  pageSize: number
+}

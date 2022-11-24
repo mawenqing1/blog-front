@@ -36,5 +36,9 @@ export const GET_TAG_LIST = async (params: {}) => {
 }
 
 export const ADD_COMMENT = async (params: h.AddCommentReq) => {
-  return await http<h.TagListReq[]>('/api/comment/add', 'post', params)
+  return await http('/api/comment/add', 'post', params)
+}
+
+export const GET_COMMENT_LIST = async (params: h.GetCommentList) => {
+  return await http('/api/comment/getList', 'get', params)
 }

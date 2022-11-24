@@ -1,5 +1,5 @@
-import React, { FC, Fragment, useRef } from "react";
-import { ADD_COMMENT } from "@/api/api";
+import React, { FC, Fragment, useEffect, useRef, useState } from "react";
+import { ADD_COMMENT, GET_COMMENT_LIST } from "@/api/api";
 import { Input, Button, message as msg, Form, FormInstance, Pagination, PaginationProps } from 'antd';
 import styles from './index.module.less';
 
@@ -12,6 +12,20 @@ const { TextArea } = Input;
 
 const LeaveWords: FC = () => {
     const formRef = useRef<FormInstance<any>>(null);
+    const [pageSize, setPageSize] = useState<number>(10);
+    const [current, setCurrent] = useState<number>(1);
+    const [total, setTotal] = useState<number>(0);
+
+    useEffect(() => {
+        queryList()
+    }, [])
+
+    const queryList = async () => {
+        const {data, code} = await GET_COMMENT_LIST({
+            current: current,
+            pageSize: pageSize
+        })
+    }
 
     /**
      * render reference box
@@ -116,7 +130,9 @@ const LeaveWords: FC = () => {
         )
     };
 
-    const onShowSizeChange: PaginationProps['onShowSizeChange'] = (current, pageSize) => {
+    const onPageChange: PaginationProps['onChange'] = (current, pageSize) => {
+        setPageSize(pageSize);
+        setCurrent(current);
         console.log(current, pageSize);
     };
 
@@ -129,7 +145,7 @@ const LeaveWords: FC = () => {
                     </div>
                     {renderCommentList()}
                     <div className={styles.words_pagination}>
-                        <Pagination defaultCurrent={1} total={50} showSizeChanger onShowSizeChange={onShowSizeChange} />
+                        <Pagination defaultCurrent={1} total={50} current={current} pageSize={pageSize} showSizeChanger onChange={onPageChange} />
                     </div>
                     {renderCommentBox()}
                 </div>
