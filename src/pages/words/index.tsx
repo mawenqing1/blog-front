@@ -201,7 +201,7 @@ const LeaveWords: FC = () => {
                     </div>
                     {renderCommentList()}
                     <div className={styles.words_pagination}>
-                        <Pagination defaultCurrent={1} total={total} current={current} pageSize={pageSize} showSizeChanger onChange={onPageChange} />
+                        <Pagination defaultCurrent={1} hideOnSinglePage={true} total={total} current={current} pageSize={pageSize} showSizeChanger onChange={onPageChange} />
                     </div>
                     {renderCommentBox()}
                 </div>
