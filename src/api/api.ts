@@ -39,6 +39,6 @@ export const ADD_COMMENT = async (params: h.AddCommentReq) => {
   return await http('/api/comment/add', 'post', params)
 }
 
-export const GET_COMMENT_LIST = async (params: h.GetCommentList) => {
-  return await http('/api/comment/getList', 'get', params)
+export const GET_COMMENT_LIST = async (params: h.GetCommentListReq) => {
+  return await http<h.GetCommentListRes>('/api/comment/getList', 'get', params)
 }

@@ -1,3 +1,5 @@
+import dayjs from "dayjs"
+
 export const checkUrl = () => {
   const localUrl = ''
   let baseURL = ''
@@ -74,4 +76,8 @@ export const returnTagName = (tag: string) => {
       }
   });
   return tagName
+};
+
+export const convertDate = (date: Date) => {
+  return dayjs(date).format('YYYY-MM-DD hh:mm:ss')
 }

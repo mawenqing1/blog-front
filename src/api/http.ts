@@ -15,8 +15,8 @@ const instance = axios.create({
 
 instance.defaults.headers.post['Content-Type'] =
     'application/x-www-form-urlencoded'
-    instance.defaults.headers.common['X-Forwarded-For'] =
-    '210.0.158.254'
+    // instance.defaults.headers.common['X-Forwarded-For'] =
+    // '210.0.158.254'
 /**
  * 请求失败后的错误统一处理
  * @param {Number} status 请求失败的状态码

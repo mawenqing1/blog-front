@@ -60,7 +60,23 @@ export interface AddCommentReq {
   toId: number | null
 }
 
-export interface GetCommentList {
+export interface GetCommentListReq {
   current: number
   pageSize: number
+}
+
+export interface GetCommentListRes {
+  current: number
+  pageSize: number
+  total: number
+  list: {
+    content:string
+    createTime: Date
+    id: number
+    ip: string
+    name: string
+    toContent: string | null
+    toId: number | null
+    toName: string | null
+  }[]
 }
