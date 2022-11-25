@@ -24,6 +24,7 @@ const { TextArea } = Input;
 
 const LeaveWords: FC = () => {
     const formRef = useRef<FormInstance<any>>(null);
+    const mainRef = useRef<HTMLDivElement>(null)
     const [pageSize, setPageSize] = useState<number>(10);
     const [current, setCurrent] = useState<number>(1);
     const [total, setTotal] = useState<number>(0);
@@ -95,8 +96,9 @@ const LeaveWords: FC = () => {
         })
         if (code === 1) {
             msg.success("发表成功");
-            // queryList();
-            window.location.reload()
+            queryList();
+            // window.location.reload()
+            mainRef.current!.scrollTop = 0;
         }
     };
 
@@ -115,6 +117,7 @@ const LeaveWords: FC = () => {
         setRName(el.name);
         setRContent(el.content);
         setToId(el.id);
+        mainRef.current!.scrollTop = mainRef.current!.scrollHeight;
     }
 
     /**
@@ -194,7 +197,7 @@ const LeaveWords: FC = () => {
 
     return (
         <Fragment>
-            <div className={styles.words_main}>
+            <div className={styles.words_main} ref={mainRef}>
                 <div className={styles.words_body}>
                     <div className={styles.words_title}>
                         <h1>留言板</h1>

@@ -14,8 +14,8 @@ export default defineConfig({
     port: 8060,
     proxy: {
       "/api": {
-        target: "https://www.mawenqing.net",
-        // target: "http://127.0.0.1:8000",
+        // target: "https://www.mawenqing.net",
+        target: "http://127.0.0.1:8000",
         changeOrigin: true,
       },
     },
