@@ -17,7 +17,38 @@
     }
 
     .side_box {
-        flex: 3;
+        flex: 4;
+        top: 0;
+        height: max-content;
+        margin-left: 20px;
+        padding: 20px 8px 20px 20px;
+        border-radius: 4px;
+        box-shadow: 0 4px 10px rgb(0 0 0 / 5%), 0 0 1px rgb(0 0 0 / 10%);
+        background-color: #fff;
+        position: sticky;
+        box-sizing: border-box;
+
+        .catalog {
+            font-size: 16px;
+            font-weight: 600;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+            display: block;
+            border-bottom: 1px solid #e4e6eb;
+        }
+
+        .viewToc {
+            height: 400px;
+            overflow-y: auto;
+
+            .tocBox {
+
+                .toc {
+                    padding: 0;
+                    list-style: none;
+                }
+            }
+        }
     }
 
     .article_information {
