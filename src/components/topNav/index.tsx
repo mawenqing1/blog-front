@@ -45,7 +45,7 @@ const TopNav: FC = () => {
     const loginName = sessionStorage.getItem('BLOG_USER_NAME')
     if (!loginName) {
       return (
-                <div className={styles.login_btn} onClick={() => setModalVisible(true)}>登陆</div>
+                <div className={styles.login_btn} onClick={() => setModalVisible(true)}>登录</div>
       )
     } else {
       return (

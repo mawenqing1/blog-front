@@ -21,7 +21,7 @@
         top: 0;
         height: max-content;
         margin-left: 20px;
-        padding: 20px 8px 20px 20px;
+        padding: 20px 8px 20px 0;
         border-radius: 4px;
         box-shadow: 0 4px 10px rgb(0 0 0 / 5%), 0 0 1px rgb(0 0 0 / 10%);
         background-color: #fff;
@@ -31,6 +31,7 @@
         .catalog {
             font-size: 16px;
             font-weight: 600;
+            margin-left: 15px;
             padding-bottom: 8px;
             margin-bottom: 8px;
             display: block;
@@ -39,13 +40,51 @@
 
         .viewToc {
             height: 400px;
+            font-size: 14px;
             overflow-y: auto;
+            color: #333;
 
             .tocBox {
 
                 .toc {
                     padding: 0;
                     list-style: none;
+
+                    li {
+                        height: 38px;
+                        padding: 8px;
+                        margin-bottom: 4px;
+                        margin: 0 4px 0 15px;
+                        border-radius: 4px;
+                        box-sizing: border-box;
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                        position: relative;
+
+                        &:hover {
+                            background-color: #f7f8fa;
+                        }
+
+                        .d-container {
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                top: 4px;
+                                left: -15px;
+                                margin-top: 7px;
+                                width: 4px;
+                                height: 16px;
+                                background-color: var(--primary-color);
+                                border-radius: 0 4px 4px 0;
+                            }
+                        }
+
+                    }
+
+                    .active {
+                        color: var(--primary-color);
+                    }
                 }
             }
         }
@@ -53,7 +92,7 @@
 
     .article_information {
         color: var(--text-minor);
-        
+
         .article_time {
             margin-left: 8px;
         }

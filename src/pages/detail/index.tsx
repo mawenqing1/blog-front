@@ -73,7 +73,7 @@ const ArticleDetail: FC = () => {
     return () => {
       headings.forEach(node => observer.unobserve(node));
     }
-  }, [state]);
+  }, []);
 
   const skipContent = (index: number) => {
     const root = (ref.current as HTMLElement).querySelector('.markdown-body') as HTMLElement;
@@ -123,9 +123,10 @@ const ArticleDetail: FC = () => {
                         <li
                           key={String(index)}
                           className={`toc-${item.level}${currentHeadingIndex === index ? ' active' : ''}`}
-                          style={{ paddingLeft: (item.level - minLevel) * 8 + 8 }}
+                          style={{ paddingLeft: (item.level - minLevel) * 6 + 8}}
                           onClick={() => skipContent(index)}
                         >
+                          {currentHeadingIndex === index && <div className='d-container'></div>}
                           {item.text}
                         </li>
                       ))
