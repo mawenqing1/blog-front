@@ -53,7 +53,7 @@ const ArticleDetail: FC = () => {
     })
     setMinLevel(_minLevel);
     setItems(_items);
-  }, [state]);
+  }, [articleData]);
 
   useLayoutEffect(() => {
     const root = (ref.current as HTMLElement).querySelector('.markdown-body') as HTMLElement;
@@ -73,7 +73,7 @@ const ArticleDetail: FC = () => {
     return () => {
       headings.forEach(node => observer.unobserve(node));
     }
-  }, []);
+  }, [articleData]);
 
   const skipContent = (index: number) => {
     const root = (ref.current as HTMLElement).querySelector('.markdown-body') as HTMLElement;
