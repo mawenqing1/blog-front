@@ -34,6 +34,10 @@ const options = [
   {
     label: '算法',
     value: 'alg'
+  },
+  {
+    label: '软技能',
+    value: 'soft'
   }
 ];
 
