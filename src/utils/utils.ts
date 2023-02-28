@@ -67,6 +67,10 @@ export const returnTagName = (tag: string) => {
       {
           label: '算法',
           value: 'alg'
+      },
+      {
+        label: '软技能',
+        value: 'soft'
       }
   ];
   let tagName = '';
