@@ -99,16 +99,22 @@ const Home: FC = () => {
   return (
     <Fragment>
       <BgA />
-      <div className={styles.home_main}>
-        <div className={styles.home_left}>
-          <SelfCard />
+      <div className={styles.home_layout}>
+        <div className={styles.home_main}>
+          <div className={styles.home_left}>
+            <SelfCard />
+          </div>
+          <div className={styles.home_center}>
+            {renderList(articles)}
+          </div>
+          <div className={styles.home_right}>
+            <ArticleCard />
+            <ClassifyCard selectTag={queryBlogList} />
+          </div>
         </div>
-        <div className={styles.home_center}>
-          {renderList(articles)}
-        </div>
-        <div className={styles.home_right}>
-          <ArticleCard />
-          <ClassifyCard selectTag={queryBlogList} />
+        <div className={styles.link}>
+          <span>MIT Licensed | Copyright © 2021-2026 热爱生活 喜欢睡觉 | ICP证：</span>
+          <a href="//beian.miit.gov.cn">豫ICP备2021013438号-1</a>
         </div>
       </div>
     </Fragment>
