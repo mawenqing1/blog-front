@@ -1,109 +1,94 @@
-import React, { FC, useEffect, useState, useRef, useLayoutEffect } from 'react'
+import React, { FC, useCallback } from 'react'
+import Particles from 'react-particles'
+import { loadSlim } from 'tsparticles-slim'
+import type { Container, Engine } from 'tsparticles-engine'
 import styles from './index.module.less'
 
 const BgA: FC = () => {
-  const canvas = useRef<HTMLCanvasElement>(null)
-  const [width, setWidth] = useState<number>(window.innerWidth)
-  const [height, setHeight] = useState<number>(window.innerHeight)
-  const [points, setPoints] = useState<any[]>([])
-
-  const canvasDom = canvas.current
-  const ctx = canvasDom?.getContext('2d')
-  useEffect(() => {
-    setPoints(() => {
-      const arr = []
-      for (let i = 0; i < 40; i++) {
-        arr.push(new Point(Math.random() * width, Math.random() * height))
-      };
-      return arr
-    })
-    window.addEventListener('resize', function () {
-      setWidth(this.window.innerWidth)
-      setHeight(this.window.innerHeight)
-      setPoints(() => {
-        const arr = []
-        for (let i = 0; i < 60; i++) {
-          arr.push(new Point(Math.random() * width, Math.random() * height))
-        };
-
-        return arr
-      })
-    })
+  const particlesInit = useCallback(async (engine: Engine) => {
+    console.log(engine)
+    // await loadFull(engine)
+    await loadSlim(engine)
   }, [])
 
-  useLayoutEffect(() => {
-    if (canvasDom == null) return
-    requestAnimationFrame(loop)
-    paint()
-  }, [ctx])
-
-  class Point {
-    x: number
-    y: number
-    r: number
-    sx: number
-    sy: number
-    draw: (ctx: any) => void
-    move: () => void
-    drawLine: (ctx: any, p: any) => void
-    constructor (x: number, y: number) {
-      this.x = x
-      this.y = y
-      this.r = 1
-      this.sx = Math.random() * 2 - 1
-      this.sy = Math.random() * 2 - 1
-      this.draw = function (ctx) {
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.r, 0, 1 * Math.PI)
-        ctx.closePath()
-        ctx.fillStyle = '#aaa'
-        ctx.fill()
-      }
-      this.move = function () {
-        this.x += this.sx / 2
-        this.y += this.sy / 2
-        if (this.x > width) this.sx = -Math.abs(this.sx)
-        else if (this.x < 0) this.sx = Math.abs(this.sx)
-        if (this.y > height) this.sy = -Math.abs(this.sy)
-        else if (this.y < 0) this.sy = Math.abs(this.sy)
-      }
-      this.drawLine = function (ctx, p) {
-        var dx = this.x - p.x
-        var dy = this.y - p.y
-        var d = Math.sqrt(dx * dx + dy * dy)
-        if (d < 100) {
-          var alpha = (100 - d) / 100 * 1
-          ctx.beginPath()
-          ctx.moveTo(this.x, this.y)
-          ctx.lineTo(p.x, p.y)
-          ctx.closePath()
-          ctx.strokeStyle = 'rgba(170, 170, 170, ' + alpha + ')'
-          ctx.strokeWidth = 1
-          ctx.stroke()
-        }
-      }
-    }
-  }
-
-  const paint = () => {
-    ctx!.clearRect(0, 0, width, height)
-    for (var i = 0; i < points.length; i++) {
-      points[i].move()
-      points[i].draw(ctx)
-      for (var j = i + 1; j < points.length; j++) {
-        points[i].drawLine(ctx, points[j])
-      }
-    }
-  }
-
-  const loop = () => {
-    requestAnimationFrame(loop)
-    paint()
-  }
-
+  const particlesLoaded = useCallback(async (container: Container | undefined) => {
+    await console.log(container)
+  }, [])
   return (
         <div className={styles.bga_main}>
-            <canvas ref={canvas} id="canvas"></canvas>
+            {/* <canvas ref={canvas} id="canvas"></canvas> */}
+            <Particles id="tsparticles" init={particlesInit} loaded={particlesLoaded} options={{
+              name: 'Basic',
+              fpsLimit: 120,
+              interactivity: {
+                events: {
+                  onClick: {
+                    enable: true,
+                    mode: 'push'
+                  },
+                  onHover: {
+                    enable: true,
+                    mode: 'attract'
+                  },
+                  resize: true
+                },
+                modes: {
+                  push: {
+                    quantity: 4
+                  },
+                  attract: {
+                    easing: 'ease-out-quad',
+                    distance: 500,
+                    duration: 20,
+                    speed: 2,
+                    factor: 1
+                  }
+                }
+              },
+              particles: {
+                color: {
+                  value: '#000'
+                },
+                links: {
+                  color: '#000',
+                  distance: 150,
+                  enable: true,
+                  opacity: 0.5,
+                  width: 1
+                },
+                collisions: {
+                  enable: true
+                },
+                move: {
+                  direction: 'none',
+                  enable: true,
+                  outModes: {
+                    default: 'bounce'
+                  },
+                  random: true,
+                  speed: 4,
+                  straight: false
+                },
+                number: {
+                  density: {
+                    enable: true,
+                    area: 800
+                  },
+                  value: 40
+                },
+                opacity: {
+                  value: 0.5
+                },
+                shape: {
+                  type: 'circle'
+                },
+                size: {
+                  value: { min: 1, max: 3 }
+                }
+              },
+              detectRetina: true
+            }} />
+            <Particles />
         </div>
   )
 }
