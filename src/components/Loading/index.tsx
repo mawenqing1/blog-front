@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import styles from './index.module.less'
 
 const LoadingPage = () => {
@@ -6,7 +6,12 @@ const LoadingPage = () => {
         <Fragment>
             <main className={styles.loading_main}>
                 <div className={styles.loading_box}>
-                    <div className={styles.loading_animation}></div>
+                    <div className={styles.loading}>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                     <span className={styles.loading_text}>精彩内容马上呈现</span>
                 </div>
             </main>
