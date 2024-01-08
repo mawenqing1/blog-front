@@ -9,7 +9,8 @@ import { Affix } from 'antd'
 import BgA from '@/components/BgAnimatiion'
 import gfm from '@bytemd/plugin-gfm'
 import gemoji from '@bytemd/plugin-gemoji'
-import highlightSsr from '@bytemd/plugin-highlight-ssr'
+// import highlightSsr from '@bytemd/plugin-highlight-ssr'
+import highlight from '@bytemd/plugin-highlight'
 import mediumZoom from '@bytemd/plugin-medium-zoom'
 import mermaid from '@bytemd/plugin-mermaid'
 import frontmatter from '@bytemd/plugin-frontmatter'
@@ -20,7 +21,7 @@ import 'juejin-markdown-themes/dist/juejin.min.css'
 
 interface Item { level: number, text: string }
 
-const plugins = [gfm(), gemoji(), highlightSsr(), mediumZoom(), mermaid(), frontmatter()]
+const plugins = [gfm(), gemoji(), highlight(), mediumZoom(), mermaid(), frontmatter()]
 
 const ArticleDetail: FC = () => {
   const ref = useRef<HTMLDivElement>(null)
