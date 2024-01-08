@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router'
 import { useLocation } from 'react-router-dom'
 import { DetailData } from '@/types/detail'
 import { Viewer } from '@bytemd/react'
-import { Affix } from "antd"
+import { Affix } from 'antd'
 import BgA from '@/components/BgAnimatiion'
 import gfm from '@bytemd/plugin-gfm'
 import gemoji from '@bytemd/plugin-gemoji'
@@ -15,74 +15,74 @@ import mermaid from '@bytemd/plugin-mermaid'
 import frontmatter from '@bytemd/plugin-frontmatter'
 import './index.less'
 import 'bytemd/dist/index.min.css'
-import 'highlight.js/styles/vs.css'
+// import 'highlight.js/styles/vs.css'
 import 'juejin-markdown-themes/dist/juejin.min.css'
 
-type Item = { level: number; text: string };
+interface Item { level: number, text: string }
 
-const plugins = [gfm(), gemoji(), highlight(), mediumZoom(), mermaid(), frontmatter()];
+const plugins = [gfm(), gemoji(), highlight(), mediumZoom(), mermaid(), frontmatter()]
 
 const ArticleDetail: FC = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { state } = useLocation();
-  const navigate = useNavigate();
-  const isLogin = sessionStorage.getItem('BLOG_USER_NAME');
-  const [articleData, setArticle] = useState<DetailData>();
-  const [items, setItems] = useState<Item[]>([]);
-  const [minLevel, setMinLevel] = useState<number>(6);
-  const [currentHeadingIndex, setCurrentHeadingIndex] = useState<number>(0);
+  const ref = useRef<HTMLDivElement>(null)
+  const { state } = useLocation()
+  const navigate = useNavigate()
+  const isLogin = sessionStorage.getItem('BLOG_USER_NAME')
+  const [articleData, setArticle] = useState<DetailData>()
+  const [items, setItems] = useState<Item[]>([])
+  const [minLevel, setMinLevel] = useState<number>(6)
+  const [currentHeadingIndex, setCurrentHeadingIndex] = useState<number>(0)
 
   useEffect(() => {
-    queryArticleDetail();
-  }, []);
+    queryArticleDetail()
+  }, [])
 
   useLayoutEffect(() => {
-    const root = (ref.current as HTMLElement).querySelector('.markdown-body') as HTMLElement;
-    const _items: Item[] = [];
-    let _minLevel = minLevel;
+    const root = (ref.current as HTMLElement).querySelector('.markdown-body') as HTMLElement
+    const _items: Item[] = []
+    let _minLevel = minLevel
     // root.children is HTMLCollection
     Array.prototype.filter.call(root.children, (v) => v && v.nodeType === 1).forEach((node: HTMLElement, index) => {
       if (node.tagName[0].toLowerCase() === 'h' && (node.hasChildNodes())) {
-        const i = Number(node.tagName[1]); // h1 h2 h3 h4 h5 h6
+        const i = Number(node.tagName[1]) // h1 h2 h3 h4 h5 h6
         _minLevel = Math.min(_minLevel, i)
         _items.push({
           level: i,
-          text: node.innerText, // stringifyHeading(node),
+          text: node.innerText // stringifyHeading(node),
         })
       }
     })
-    setMinLevel(_minLevel);
-    setItems(_items);
-  }, [articleData]);
+    setMinLevel(_minLevel)
+    setItems(_items)
+  }, [articleData])
 
   useLayoutEffect(() => {
-    const root = (ref.current as HTMLElement).querySelector('.markdown-body') as HTMLElement;
-    const headings = root.querySelectorAll('h1,h2,h3,h4,h5,h6');
+    const root = (ref.current as HTMLElement).querySelector('.markdown-body') as HTMLElement
+    const headings = root.querySelectorAll('h1,h2,h3,h4,h5,h6')
 
     const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
-      const io: IntersectionObserverEntry = entries[0];
-      if (io.isIntersecting === true) {
-        const index = Array.prototype.indexOf.call(headings, io.target);
-        setCurrentHeadingIndex(preState => index);
+      const io: IntersectionObserverEntry = entries[0]
+      if (io.isIntersecting) {
+        const index = Array.prototype.indexOf.call(headings, io.target)
+        setCurrentHeadingIndex(preState => index)
       }
-    }, { threshold: [1] });
+    }, { threshold: [1] })
 
     // observe all head
-    headings.forEach(node => observer.observe(node));
+    headings.forEach(node => observer.observe(node))
 
     return () => {
-      headings.forEach(node => observer.unobserve(node));
+      headings.forEach(node => observer.unobserve(node))
     }
-  }, [articleData]);
+  }, [articleData])
 
-  const skipContent = (index: number) => {
-    const root = (ref.current as HTMLElement).querySelector('.markdown-body') as HTMLElement;
-    const headings = root.querySelectorAll('h1,h2,h3,h4,h5,h6');
-    setCurrentHeadingIndex(index);
-    headings[index].scrollIntoView();
-  };
+  const skipContent = (index: number): void => {
+    const root = (ref.current as HTMLElement).querySelector('.markdown-body') as HTMLElement
+    const headings = root.querySelectorAll('h1,h2,h3,h4,h5,h6')
+    setCurrentHeadingIndex(index)
+    headings[index].scrollIntoView()
+  }
 
-  const queryArticleDetail = async () => {
+  const queryArticleDetail = async (): Promise<void> => {
     const { code, data } = await GET_ARTICLE_DETAIL({
       id: state.id
     })
@@ -91,7 +91,7 @@ const ArticleDetail: FC = () => {
     }
   }
 
-  const handleEditor = () => {
+  const handleEditor = (): void => {
     navigate('/layout/article', { state: { id: state.id, title: articleData?.title, content: articleData?.content } })
   }
 
@@ -123,7 +123,7 @@ const ArticleDetail: FC = () => {
                         <li
                           key={String(index)}
                           className={`toc-${item.level}${currentHeadingIndex === index ? ' active' : ''}`}
-                          style={{ paddingLeft: (item.level - minLevel) * 6 + 8}}
+                          style={{ paddingLeft: (item.level - minLevel) * 6 + 8 }}
                           onClick={() => skipContent(index)}
                         >
                           {currentHeadingIndex === index && <div className='d-container'></div>}
